@@ -36,6 +36,8 @@ public class ProximaFruta : MonoBehaviour
     private SoundControl controlaSonidos;
     private int contador;
 
+    const int frutaSinMostrar = 3;
+
     private void Awake()
     {
         contador = 0;
@@ -54,7 +56,7 @@ public class ProximaFruta : MonoBehaviour
         if (ultimoNumeroGenerado == maximo) maximo -= 1;
 
         int numeroSemiAleatorio = Mathf.RoundToInt(probabilidadNormalizada * maximo);
-        if (numeroSemiAleatorio == ultimoNumeroGenerado)
+        if (SeRepite(numeroSemiAleatorio))
         {
             if (ultimoNumeroGenerado == 1) return 0;         
             if (ultimoNumeroGenerado == 0) return 1;
@@ -63,11 +65,16 @@ public class ProximaFruta : MonoBehaviour
 
         if (contador > 6)
         {
-            numeroSemiAleatorio = UnityEngine.Random.Range(0, ListaFrutas.Length - 3);
+            numeroSemiAleatorio = UnityEngine.Random.Range(0, ListaFrutas.Length - frutaSinMostrar);
             contador = 0;
         }
 
         return numeroSemiAleatorio;
+    }
+
+    private bool SeRepite(int num)
+    {
+        return num == ultimoNumeroGenerado;
     }
 
     private void GeneraFrutaAleatoria()
