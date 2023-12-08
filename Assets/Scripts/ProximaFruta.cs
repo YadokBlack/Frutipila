@@ -81,7 +81,7 @@ public class ProximaFruta : MonoBehaviour
     {
         int frutaNumero = GenerarNumeroSemiAleatorio(frutas.Length - cuantasNoPuedeLanzar);
         ultimoNumeroGenerado = frutaNumero;
-        proximaFruta = Instantiate(ListaFrutas[frutaNumero], transform.position, Quaternion.identity, ubicacion.transform);
+        proximaFruta = Instantiate(ListaFrutas[frutaNumero], transform.position, Quaternion.identity, transform.parent);
         AjustarEscala(proximaFruta, gameObject);
         rigidbodyFruta = proximaFruta.GetComponent<Rigidbody2D>();
         rigidbodyFruta.isKinematic = true;        
@@ -106,24 +106,13 @@ public class ProximaFruta : MonoBehaviour
         }
     }
 
-    public void LanzarFruta2(Vector3 positition, Transform padre)
-    {
-        proximaFruta.transform.localScale = Vector3.one;
-        rigidbodyFruta.velocity = velocidadCaidaInicial;
-        rigidbodyFruta.isKinematic = false;
-        proximaFruta.transform.position = positition;
-        proximaFruta.transform.SetParent(padre, false);
-        controlaSonidos.ReproduceSonido(2);
-        GeneraFrutaAleatoria();
-    }
-
     public GameObject LanzarFruta(Vector3 positition, Transform padre)
     {
         proximaFruta.transform.localScale = Vector3.one;
         rigidbodyFruta.velocity = velocidadCaidaInicial;
         rigidbodyFruta.isKinematic = false;
-        proximaFruta.transform.position = positition;
         proximaFruta.transform.SetParent(padre, false);
+        proximaFruta.transform.position = positition;        
         controlaSonidos.ReproduceSonido(1);
         GameObject frutaLanzada = proximaFruta;
         GeneraFrutaAleatoria();
