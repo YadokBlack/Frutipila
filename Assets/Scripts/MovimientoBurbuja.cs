@@ -4,8 +4,10 @@ using UnityEngine;
 
 public class MovimientoBurbuja : MonoBehaviour
 {
-    private Vector3 posicionInicial;
+    private Vector2 posicionInicial;
+    [SerializeField]
     private float desplazamientoMaximo;
+    [SerializeField]
     private float velocidad;
     private float desplazamiento;
 
@@ -16,7 +18,7 @@ public class MovimientoBurbuja : MonoBehaviour
 
     private void Update()
     {
-        desplazamiento = desplazamientoMaximo * Mathf.Sin(Time.deltaTime * velocidad);
-        transform.position = new Vector3(posicionInicial.x, posicionInicial.y + desplazamiento, posicionInicial.z);
+        desplazamiento = desplazamientoMaximo * Mathf.Sin(Time.time * velocidad);
+        transform.position = new Vector2(posicionInicial.x, posicionInicial.y + desplazamiento);
     }
 }
