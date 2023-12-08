@@ -1,6 +1,23 @@
 using System;
 using UnityEngine;
 
+public enum Fruta
+{
+    Uva,
+    Cereza,
+    fresa,
+    Pera,
+    Melocoton,
+    Naranja,
+    Limon,
+    Manzana,
+    Piña,
+    Platano,
+    Tajada,
+    Sandia,
+    Coco
+}
+
 public class ProximaFruta : MonoBehaviour
 {
     public GameObject proximaFruta;
