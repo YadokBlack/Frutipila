@@ -6,17 +6,13 @@ public class SoundControl : MonoBehaviour
 {
     public AudioSource reproductor;
     public AudioClip[] sonidos;
-
     public AudioSource reproductorColision;
     public AudioSource reproductorCombinacion;
 
-    
     public void ReproduceSonido(int num)
     {
         if (num >= 0 && num < sonidos.Length)
         {
-            reproductor.clip = sonidos[num];
-           // reproductor.Play();
             reproductor.PlayOneShot(sonidos[num]);
         }
         else
