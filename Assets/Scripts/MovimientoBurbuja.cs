@@ -11,13 +11,14 @@ public class MovimientoBurbuja : MonoBehaviour
     private float velocidad;
     private float desplazamiento;
 
-    private void Awake()
+    private void Start()
     {
         posicionInicial = transform.position;
     }
 
     private void Update()
     {
+        if (posicionInicial == null) return;
         desplazamiento = desplazamientoMaximo * Mathf.Sin(Time.time * velocidad);
         transform.position = new Vector2(posicionInicial.x, posicionInicial.y + desplazamiento);
     }
