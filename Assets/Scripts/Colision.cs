@@ -9,6 +9,8 @@ public class Colision : MonoBehaviour
     [SerializeField]
     private GameObject resultadoCombinarFruta;
     private bool colisionManejada = false;
+    public GameObject efectoColision;
+    public float tiempoEfecto = 3f;
 
     private ControlPuntos controlaPuntuacion;
     private SoundControl controlaSonidos;
@@ -47,12 +49,18 @@ public class Colision : MonoBehaviour
 
     private void Combinar(GameObject otroObjeto)
     {
-        controlaSonidos.ReproduceSonidoCombinacion();
         colisionManejada = true;
+        
+    //    GameObject efecto1 = Instantiate(efectoColision, transform.position, Quaternion.identity, transform.parent);
+    //    GameObject efecto2 = Instantiate(efectoColision, otroObjeto.transform.position, Quaternion.identity, transform.parent);
+        controlaSonidos.ReproduceSonidoCombinacion();
         Vector3 posicionMedia = (transform.position + otroObjeto.transform.position) / 2f;
         GameObject objetoCombinado = Instantiate(resultadoCombinarFruta, posicionMedia, Quaternion.identity, transform.parent);
+        
         Destroy(gameObject);
         Destroy(otroObjeto);
+    //    Destroy(efecto1,tiempoEfecto);
+    //    Destroy(efecto2, tiempoEfecto);
         controlaPuntuacion.SumarPuntos(doblepuntos);
     }
 
